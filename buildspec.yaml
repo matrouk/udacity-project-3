@@ -5,16 +5,19 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 914394607422.dkr.ecr.us-east-1.amazonaws.com
+
   build:
     commands:
       - echo Building the Docker image...
       - docker build -t coworking-analytics:1.0.0 ./analytics
       - docker tag coworking-analytics:1.0.0 914394607422.dkr.ecr.us-east-1.amazonaws.com/coworking:1.0.0
       - docker tag coworking-analytics:1.0.0 914394607422.dkr.ecr.us-east-1.amazonaws.com/coworking:latest
+
   post_build:
     commands:
       - echo Pushing Docker images to ECR...
       - docker push 914394607422.dkr.ecr.us-east-1.amazonaws.com/coworking:1.0.0
       - docker push 914394607422.dkr.ecr.us-east-1.amazonaws.com/coworking:latest
+
 artifacts:
   files: '**/*'

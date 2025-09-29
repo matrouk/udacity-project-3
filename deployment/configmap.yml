@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: my-postgres-db-configmap
+  name: coworking-config
 data:
-  DB_USERNAME: "postgresql"
-  DB_NAME: "postgres"
-  DB_HOST: "my-postgres-postgresql.default.svc.cluster.local"
+  DB_HOST: "postgresql-service"
+  DB_USERNAME: "postgres"
   DB_PORT: "5432"
+  DB_NAME: "postgres"
